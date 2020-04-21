@@ -43,7 +43,8 @@ def plot_traditional(R0,
                      prob_contact, 
                      mult_contact_mitigation,
                      num_deliveries,
-                     num_deliverers):
+                     num_deliverers, 
+                     plot_color):
     pc = 1 - (1/R0)
     ttt_pc = int(pc*100)
     x = []
@@ -61,14 +62,14 @@ def plot_traditional(R0,
     
     plt.xlabel("Percent of population infected")
     plt.ylabel("Percent of customers infected with deliveries")
-    plt.plot(x, y)
+    plt.plot(x, y, plot_color)
     
     
 def plot_drone(R0, 
              prob_contact, 
              mult_contact_mitigation,
              num_deliveries,
-             num_deliverers):
+             num_deliverers, plot_color):
 #    Drone
     
     plot_traditional(R0,
@@ -76,6 +77,34 @@ def plot_drone(R0,
                      prob_contact, 
                      mult_contact_mitigation,
                      num_deliveries,
-                     num_deliverers)  
+                     num_deliverers,
+                     plot_color)
+    
+    plt.ylim(0.00, 0.10)
+    
+
+def plot_together(R0,
+                 prob_air, 
+                 prob_contact, 
+                 mult_contact_mitigation,
+                 num_deliveries,
+                 num_deliverers,
+                 trad_color,
+                 drone_color):
+    
+    plot_traditional(R0,
+                     prob_air, 
+                     prob_contact, 
+                     mult_contact_mitigation,
+                     num_deliveries,
+                     num_deliverers,
+                     trad_color)
+    
+    plot_drone(R0, 
+             prob_contact, 
+             mult_contact_mitigation,
+             num_deliveries,
+             num_deliverers,
+             drone_color)
     
     
